@@ -198,7 +198,7 @@ def config_ntp(module):
     # Parameters
     if params['unicast'] == True:
         data['unicast'] = params['unicast']
-    else: 
+    elif params['broadcast'] == True:
         data['broadcast'] = params['broadcast']
 
     data['max-association'] = {'cmd_no_form': params['cmd_no_form'],
