@@ -196,8 +196,10 @@ def config_ntp(module):
                 'changed': False, 'failed': False}
 
     # Parameters
-    data['broadcast'] = params['broadcast']
-    #data['unicast'] = params['unicast']
+    if params['unicast'] == True:
+        data['unicast'] = params['unicast']
+    else: 
+        data['broadcast'] = params['broadcast']
 
     data['max-association'] = {'cmd_no_form': params['cmd_no_form'],
                 'max-association_value': params['association_value']}
@@ -439,7 +441,7 @@ def run_module():
         timepOrSntp=dict(type='bool', required=False, default=False),
         timesyncType=dict(type='str', required=False, default="ntp",
             choices=["ntp", "sntp", "timep", "timep-or-sntp"]),
-        broadcast=dict(type='bool', required=False, default=True),
+        broadcast=dict(type='bool', required=False, default=False),
         unicast=dict(type='bool', required=False, default=False),
         cmd_no_form=dict(type='bool', required=False, default=False),
         association_value=dict(type='int', required=False, default=8),
